@@ -3,11 +3,11 @@ variable "region" {
 }
 
 variable "cluster_name" {
-  default = "knox-eks-cluster"
+  default = "practice-eks"
 }
 
 variable "environment" {
-  default = "dev"
+  default = "lab"
 }
 
 variable "vpc_cidr" {
