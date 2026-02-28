@@ -7,7 +7,7 @@ variable "cluster_name" {
 }
 
 variable "environment" {
-  default = "lab"
+  default = "my_env"
 }
 
 variable "vpc_cidr" {
