@@ -1,10 +1,39 @@
+# Terraform Reference Guide
+
+A practical reference for infrastructure as code with Terraform: installation, core workflow, state, variables, modules, providers, backends, and operational best practices.
+
+---
+
+## Table of Contents
+
+| #  | Section |
+|----|---------|
+| 01 | [Installation](#1-installation) |
+| 02 | [AWS Authentication Setup](#2-aws-authentication-setup) |
+| 03 | [Quick Start: First Project](#3-quick-start-first-project) |
+| 04 | [Core Commands](#4-core-commands) |
+| 05 | [Workspace Management](#5-workspace-management) |
+| 06 | [State Management](#6-state-management) |
+| 07 | [Variables, Locals and Outputs](#7-variables-locals-and-outputs) |
+| 08 | [Resources, Data Sources and Meta-Arguments](#8-resources-data-sources-and-meta-arguments) |
+| 09 | [Modules](#9-modules) |
+| 10 | [Providers](#10-providers) |
+| 11 | [Inspect and Debug](#11-inspect-and-debug) |
+| 12 | [Backends and Remote State](#12-backends-and-remote-state) |
+| 13 | [Secrets and Sensitive Data](#13-secrets-and-sensitive-data) |
+| 14 | [Resource Targeting](#14-resource-targeting) |
+| 15 | [Import and Move](#15-import-and-move) |
+| 16 | [Troubleshooting](#16-troubleshooting) |
+| 17 | [Best Practices](#17-best-practices) |
+
+---
 
 ## 1. Installation
 
 ### Prerequisites
 
-- A 64-bit Linux operating system (x86_64 or arm64)
-- Administrator or `sudo` access
+- A 64-bit Linux or Windows operating system
+- `sudo` access (Linux) or an elevated PowerShell session (Windows)
 - Internet access to download packages (a private instance requires a NAT Gateway or equivalent outbound route)
 - Credentials for the cloud provider you intend to manage (see Section 2)
 
@@ -64,7 +93,7 @@ rm terraform_${TF_VERSION}_linux_amd64.zip
 
 Check the [official downloads page](https://developer.hashicorp.com/terraform/install) for the latest version number.
 
-### Managing Multiple Versions (tfenv)
+### Managing Multiple Versions on Linux (tfenv)
 
 ```bash
 git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
@@ -76,6 +105,38 @@ tfenv install 1.9.8        # Install a specific version
 tfenv use 1.9.8            # Activate a version
 ```
 
+### Windows
+
+Run these commands in PowerShell. Use an elevated (Run as administrator) session for system-wide installs.
+
+**Option 1: Windows Package Manager (winget)**
+
+```powershell
+winget install --id Hashicorp.Terraform -e
+```
+
+**Option 2: Chocolatey**
+
+```powershell
+choco install terraform -y
+```
+
+**Option 3: Manual installation**
+
+1. Download the Windows AMD64 zip from the [official downloads page](https://developer.hashicorp.com/terraform/install).
+2. Extract `terraform.exe` to a folder such as `C:\terraform`.
+3. Add that folder to the system `PATH`:
+
+```powershell
+[Environment]::SetEnvironmentVariable(
+  "Path",
+  [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\terraform",
+  "Machine"
+)
+```
+
+Close and reopen PowerShell so the new `PATH` takes effect, then verify with `terraform version`.
+
 ### Verify the Installation
 
 ```bash
@@ -83,14 +144,14 @@ terraform version
 terraform -help
 ```
 
-Expected output is similar to:
+Expected output is similar to the following (`windows_amd64` on Windows):
 
 ```
 Terraform v1.9.8
 on linux_amd64
 ```
 
-### Enable Tab Completion (Bash and Zsh)
+### Enable Tab Completion (Linux: Bash and Zsh)
 
 ```bash
 terraform -install-autocomplete
@@ -100,6 +161,8 @@ Restart the shell to activate it.
 
 ### Upgrade or Uninstall
 
+**Linux**
+
 ```bash
 # Upgrade via package manager
 sudo dnf upgrade terraform          # Amazon Linux 2023 / Fedora
@@ -108,6 +171,18 @@ sudo apt update && sudo apt install --only-upgrade terraform   # Ubuntu / Debian
 
 # Uninstall
 sudo dnf remove terraform           # or: sudo yum remove terraform / sudo apt remove terraform
+```
+
+**Windows (PowerShell)**
+
+```powershell
+# Upgrade
+winget upgrade --id Hashicorp.Terraform
+choco upgrade terraform -y
+
+# Uninstall
+winget uninstall --id Hashicorp.Terraform
+choco uninstall terraform -y
 ```
 
 ---
@@ -695,7 +770,7 @@ resource "aws_s3_bucket" "replica" {
 terraform providers
 
 # Record provider checksums for multiple platforms
-terraform providers lock -platform=linux_amd64 -platform=linux_arm64
+terraform providers lock -platform=linux_amd64 -platform=linux_arm64 -platform=windows_amd64
 
 # Mirror providers locally (for offline or restricted environments)
 terraform providers mirror ./mirror-dir
