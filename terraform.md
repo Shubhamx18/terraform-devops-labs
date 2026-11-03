@@ -1,32 +1,3 @@
-# Terraform Reference Guide
-
-A practical reference for infrastructure as code with Terraform: installation, core workflow, state, variables, modules, providers, backends, and operational best practices.
-
----
-
-## Table of Contents
-
-| #  | Section |
-|----|---------|
-| 01 | [Installation](#1-installation) |
-| 02 | [AWS Authentication Setup](#2-aws-authentication-setup) |
-| 03 | [Quick Start: First Project](#3-quick-start-first-project) |
-| 04 | [Core Commands](#4-core-commands) |
-| 05 | [Workspace Management](#5-workspace-management) |
-| 06 | [State Management](#6-state-management) |
-| 07 | [Variables, Locals and Outputs](#7-variables-locals-and-outputs) |
-| 08 | [Resources, Data Sources and Meta-Arguments](#8-resources-data-sources-and-meta-arguments) |
-| 09 | [Modules](#9-modules) |
-| 10 | [Providers](#10-providers) |
-| 11 | [Inspect and Debug](#11-inspect-and-debug) |
-| 12 | [Backends and Remote State](#12-backends-and-remote-state) |
-| 13 | [Secrets and Sensitive Data](#13-secrets-and-sensitive-data) |
-| 14 | [Resource Targeting](#14-resource-targeting) |
-| 15 | [Import and Move](#15-import-and-move) |
-| 16 | [Troubleshooting](#16-troubleshooting) |
-| 17 | [Best Practices](#17-best-practices) |
-
----
 
 ## 1. Installation
 
