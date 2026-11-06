@@ -8,18 +8,18 @@
 
 | # | Section |
 |---|---------|
-| 01 | [⚙️ Core Commands](#️-core-commands) |
-| 02 | [🗂️ Workspace Management](#️-workspace-management) |
-| 03 | [📦 State Management](#-state-management) |
-| 04 | [🔧 Variables & Outputs](#-variables--outputs) |
-| 05 | [📁 Modules](#-modules) |
-| 06 | [🔌 Providers](#-providers) |
-| 07 | [🔍 Inspect & Debug](#-inspect--debug) |
-| 08 | [🗄️ Backends & Remote State](#️-backends--remote-state) |
-| 09 | [🔐 Secrets & Sensitive Data](#-secrets--sensitive-data) |
-| 10 | [📋 Resource Targeting](#-resource-targeting) |
-| 11 | [🚀 Import & Move](#-import--move) |
-| 12 | [✅ Best Practices & Tips](#-best-practices--tips) |
+| 01 | [ Core Commands](#️-core-commands) |
+| 02 | [ Workspace Management](#️-workspace-management) |
+| 03 | [ State Management](#-state-management) |
+| 04 | [ Variables & Outputs](#-variables--outputs) |
+| 05 | [ Modules](#-modules) |
+| 06 | [ Providers](#-providers) |
+| 07 | [ Inspect & Debug](#-inspect--debug) |
+| 08 | [ Backends & Remote State](#️-backends--remote-state) |
+| 09 | [ Secrets & Sensitive Data](#-secrets--sensitive-data) |
+| 10 | [ Resource Targeting](#-resource-targeting) |
+| 11 | [ Import & Move](#-import--move) |
+| 12 | [ Best Practices & Tips](#-best-practices--tips) |
 
 ---
 
